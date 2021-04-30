@@ -3,6 +3,10 @@ Command line tool for tracking tasks
 
 ## Getting started
 ```
+scoop install tasklist
+```
+
+```
 tl init
 ```
 
