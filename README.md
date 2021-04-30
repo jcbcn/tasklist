@@ -14,3 +14,9 @@ tl get *
 ```
 tl get -d nw
 ```
+```
+tl get -d tw
+```
+```
+tl get -d t
+```
