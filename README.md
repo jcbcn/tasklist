@@ -12,10 +12,6 @@ scoop install tasklist
 tl init
 ```
 
-### Defaults
-- Persistence: `sqlite`
-- List: `default`
-
 ## Adding a list
 ```
 tl lists add mynewlist
