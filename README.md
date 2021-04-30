@@ -1,6 +1,25 @@
 # tasklist
 Command line tool for tracking tasks
 
+## Getting started
+```
+tl init
+```
+
+### Defaults
+- Persistence: `sqlite`
+- List: `default`
+
+## Adding a list
+```
+tl lists add mynewlist
+```
+
+## Active list
+```
+tl config set-list --current --list=mynewlist
+```
+
 ## Adding a task
 
 ```
