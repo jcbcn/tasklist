@@ -23,19 +23,22 @@ tl config set-list --current --list=mynewlist
 ## Adding a task
 
 ```
-tl add -m "Catch up with colleague around X" -d nw
+tl tasks add -m "Catch up with colleague around X" -d nw
 ```
 
 ## Viewing tasks
 ```
-tl get *
+tl get tasks -all
 ```
 ```
-tl get -d nw
+tl get tasks -d nw
 ```
 ```
-tl get -d tw
+tl get tasks -d tw
 ```
 ```
-tl get -d t
+tl get tasks -d td
+```
+```
+tl get tasks -d tm
 ```
