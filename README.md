@@ -27,7 +27,7 @@ tl config set-list --current --list=mynewlist
 ## Adding a task
 
 ```
-tl tasks add -m "Catch up with colleague around X" -d nw
+tl tasks add -m "Catch up with colleague around X" -d nw -t mytag
 ```
 
 ## Viewing tasks
@@ -50,4 +50,8 @@ tl get tasks -d td
 Get all tasks in the current list that are due tomorrow
 ```
 tl get tasks -d tm
+```
+Get all tasks in the current list with a specified tag
+```
+tl get tasks -t mytag
 ```
