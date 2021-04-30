@@ -4,7 +4,7 @@ Command line tool for tracking tasks
 ## Adding a task
 
 ```
-tl -m "Catch up with colleague around X" -d nw
+tl add -m "Catch up with colleague around X" -d nw
 ```
 
 ## Viewing tasks
