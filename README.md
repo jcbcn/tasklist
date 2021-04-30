@@ -1,2 +1,16 @@
 # tasklist
-Command line tool for tracking todos
+Command line tool for tracking tasks
+
+## Adding a task
+
+```
+tl -m "Catch up with colleague around X" -d nw
+```
+
+## Viewing tasks
+```
+tl get *
+```
+```
+tl get -d nw
+```
