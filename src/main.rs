@@ -1,5 +1,6 @@
 use structopt::StructOpt;
 use rusqlite::{params, Connection, Result};
+use std::fs;
 
 #[derive(StructOpt)]
 struct Cli {
@@ -11,7 +12,8 @@ struct Cli {
 #[derive(StructOpt)]
 enum Operation {
     Get,
-    Add
+    Add,
+    Init
 }
 
 #[derive(Debug)]
@@ -23,10 +25,7 @@ struct Task {
 fn main() -> Result<()> {
     let args = Cli::from_args();
 
-    let conn = Connection::open("default.db")?;
-
-    let _ = setup_db(&conn);
-    handle_subcommand(&conn, args);
+    let _ = handle_subcommand(args);
 
     Ok(())
 }
@@ -43,22 +42,34 @@ fn setup_db(conn: &Connection) -> Result<()> {
     Ok(())
 }
 
-fn handle_subcommand(conn: &Connection, cli: Cli) {
+fn handle_subcommand(cli: Cli) -> Result<()> {
     if let Some(op) = cli.operation{
         match op {
             Operation::Get => {
+                let conn = Connection::open(".tasklist/default.db")?;
+                let _ = setup_db(&conn);
+
                 println!("Get {}", cli.object);
-                let task_iter = get_tasks(conn);
+                let task_iter = get_tasks(&conn);
                 for task in task_iter {
                     println!("Found task {:?}", task);
                 }
             },
             Operation::Add => {
+                let conn = Connection::open(".tasklist/default.db")?;
+                let _ = setup_db(&conn);
+
                 println!("Add {}", cli.object);
                 add_task(&conn, "Sample task".to_string()).expect("failed to add task");
+            },
+            Operation::Init => {
+                println!("Created dir");
+                let _ = fs::create_dir(".tasklist");
             }
         }
     }
+
+    Ok(())
 }
 
 fn add_task(conn: &Connection, task: String) -> Result<()>{
