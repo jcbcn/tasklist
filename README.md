@@ -1,4 +1,4 @@
-# tasklist
+# tasklist-cli
 Command line tool for tracking tasks
 
 ## Getting started
