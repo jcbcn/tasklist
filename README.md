@@ -35,6 +35,10 @@ Get all tasks in all lists
 ```
 tl get tasks -all
 ```
+Get all tasks in a specific list
+```
+tl get tasks -l mynewlist
+```
 Get all tasks in the current list that are due in the next week
 ```
 tl get tasks -d nw
