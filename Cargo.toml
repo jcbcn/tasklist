@@ -8,4 +8,7 @@ edition = "2018"
 
 [dependencies]
 structopt = "0.3.21"
-rusqlite = "0.25.1"
+
+[dependencies.rusqlite]
+version = "0.25.1"
+features = ["bundled"]
