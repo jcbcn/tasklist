@@ -18,7 +18,6 @@ enum Operation {
 
 #[derive(Debug)]
 struct Task {
-    id: i32,
     name: String
 }
 
@@ -33,7 +32,6 @@ fn main() -> Result<()> {
 fn setup_db(conn: &Connection) -> Result<()> {
     conn.execute(
         "CREATE TABLE task (
-                  id              INTEGER PRIMARY KEY,
                   name            TEXT NOT NULL
                   )",
         [],
@@ -51,8 +49,8 @@ fn handle_subcommand(cli: Cli) -> Result<()> {
 
                 println!("Get {}", cli.object);
                 let task_iter = get_tasks(&conn);
-                for task in task_iter {
-                    println!("Found task {:?}", task);
+                for task in &task_iter.unwrap() {
+                    println!("Found task {}", task);
                 }
             },
             Operation::Add => {
@@ -74,7 +72,6 @@ fn handle_subcommand(cli: Cli) -> Result<()> {
 
 fn add_task(conn: &Connection, task: String) -> Result<()>{
     let me = Task {
-        id: 0,
         name: task
     };
     conn.execute(
@@ -85,8 +82,8 @@ fn add_task(conn: &Connection, task: String) -> Result<()>{
     Ok(())
 }
 
-fn get_tasks<'a>(conn: &Connection) -> Result<Vec<String>> {
-    let mut stmt = conn.prepare("SELECT id, name FROM task")?;
+fn get_tasks(conn: &Connection) -> Result<Vec<String>> {
+    let mut stmt = conn.prepare("SELECT rowid, name FROM task")?;
     let rows = stmt.query_map([], |row| row.get(1))?;
 
     let mut names = Vec::new();
