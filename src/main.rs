@@ -1,19 +1,23 @@
+use structopt::clap::arg_enum;
 use structopt::StructOpt;
 use rusqlite::{params, Connection, Result};
 use std::fs;
 
-#[derive(StructOpt)]
-struct Cli {
-    #[structopt(subcommand)]
-    operation: Option<Operation>,
-    object: String
+arg_enum! {
+    #[derive(Debug)]
+    enum Operation {
+        Get,
+        Add
+    }
 }
 
-#[derive(StructOpt)]
-enum Operation {
-    Get,
-    Add,
-    Init
+#[derive(StructOpt, Debug)]
+enum Cli {
+    Init,
+    Tasks {
+        #[structopt(possible_values = &Operation::variants(), case_insensitive = true)]
+        operation: Option<Operation>
+    }
 }
 
 #[derive(Debug)]
@@ -41,31 +45,33 @@ fn setup_db(conn: &Connection) -> Result<()> {
 }
 
 fn handle_subcommand(cli: Cli) -> Result<()> {
-    if let Some(op) = cli.operation{
-        match op {
-            Operation::Get => {
-                let conn = Connection::open(".tasklist/default.db")?;
-                let _ = setup_db(&conn);
-
-                println!("Get {}", cli.object);
-                let task_iter = get_tasks(&conn);
-                for task in &task_iter.unwrap() {
-                    println!("Found task {}", task);
-                }
-            },
-            Operation::Add => {
-                let conn = Connection::open(".tasklist/default.db")?;
-                let _ = setup_db(&conn);
-
-                println!("Add {}", cli.object);
-                add_task(&conn, "Sample task".to_string()).expect("failed to add task");
-            },
-            Operation::Init => {
+        match cli {
+            Cli::Init => {
                 println!("Created dir");
                 let _ = fs::create_dir(".tasklist");
             }
+            Cli::Tasks{ operation } => {
+                //println!("Get {}", operation.unwrap());
+                match operation {
+                    Some(Operation::Get) => {
+                        let conn = Connection::open(".tasklist/default.db")?;
+                        let _ = setup_db(&conn);
+
+                        let task_iter = get_tasks(&conn);
+                        for task in &task_iter.unwrap() {
+                            println!("Found task {}", task);
+                        }
+                    },
+                    Some(Operation::Add) => {
+                        let conn = Connection::open(".tasklist/default.db")?;
+                        let _ = setup_db(&conn);
+
+                        add_task(&conn, "Sample task".to_string()).expect("failed to add task");
+                    },
+                    None => {}
+                }
+            }
         }
-    }
 
     Ok(())
 }
