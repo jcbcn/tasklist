@@ -1,6 +1,6 @@
-use structopt::StructOpt;
 use rusqlite::{params, Connection, Result};
 use std::fs;
+use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
 enum Cli {
@@ -8,7 +8,7 @@ enum Cli {
     #[structopt(alias = "t")]
     Tasks(Tasks),
     #[structopt(alias = "l")]
-    Lists(Lists)
+    Lists(Lists),
 }
 
 #[derive(StructOpt, Debug)]
@@ -30,18 +30,19 @@ enum Lists {
 #[derive(StructOpt, Debug)]
 struct AddOperation {
     #[structopt(short)]
-    message: String
+    message: String,
 }
 
 #[derive(StructOpt, Debug)]
 struct GetOperation {
     #[structopt(short)]
-    due: Option<String>
+    due: Option<String>,
 }
 
 #[derive(Debug)]
 struct Task {
-    name: String
+    id: Option<u64>,
+    name: String,
 }
 
 fn main() -> Result<()> {
@@ -55,8 +56,8 @@ fn main() -> Result<()> {
 fn setup_db(conn: &Connection) -> Result<()> {
     conn.execute(
         "CREATE TABLE task (
-                  name            TEXT NOT NULL
-                  )",
+            name            TEXT NOT NULL
+        )",
         [],
     )?;
 
@@ -64,60 +65,59 @@ fn setup_db(conn: &Connection) -> Result<()> {
 }
 
 fn handle_subcommand(cli: Cli) -> Result<()> {
-        match cli {
-            Cli::Init => {
-                println!("Created dir");
-                let _ = fs::create_dir(".tasklist");
-            }
-            Cli::Tasks(tasks) => {
-                match tasks {
-                    Tasks::Get(_cfg) => {
-                        let conn = Connection::open(".tasklist/default.db")?;
-                        let _ = setup_db(&conn);
-
-                        let task_iter = get_tasks(&conn);
-                        for task in &task_iter.unwrap() {
-                            println!("Task: {}", task);
-                        }
-                    },
-                    Tasks::Add(cfg) => {
-                        let conn = Connection::open(".tasklist/default.db")?;
-                        let _ = setup_db(&conn);
-
-                        add_task(&conn, cfg.message).expect("failed to add task");
-                    }
-                }
-            }
-            Cli::Lists(lists) => {
-                match lists {
-                    Lists::Get(_cfg) => {
-                        println!("Lists Get");
-                    },
-                    Lists::Add(_cfg) => {
-                        println!("Lists Add");
-                    }
-                }
-            }
+    match cli {
+        Cli::Init => {
+            println!("Created dir");
+            let _ = fs::create_dir(".tasklist");
         }
+        Cli::Tasks(tasks) => match tasks {
+            Tasks::Get(_cfg) => {
+                let conn = Connection::open(".tasklist/default.db")?;
+                let _ = setup_db(&conn);
+
+                let task_iter = get_tasks(&conn);
+                for task in &task_iter.unwrap() {
+                    println!("[{}] {}", task.id.unwrap(), task.name);
+                }
+            }
+            Tasks::Add(cfg) => {
+                let conn = Connection::open(".tasklist/default.db")?;
+                let _ = setup_db(&conn);
+
+                add_task(&conn, cfg.message).expect("failed to add task");
+            }
+        },
+        Cli::Lists(lists) => match lists {
+            Lists::Get(_cfg) => {
+                println!("Lists Get");
+            }
+            Lists::Add(_cfg) => {
+                println!("Lists Add");
+            }
+        },
+    }
 
     Ok(())
 }
 
-fn add_task(conn: &Connection, task: String) -> Result<()>{
+fn add_task(conn: &Connection, task: String) -> Result<()> {
     let me = Task {
-        name: task
+        id: None,
+        name: task,
     };
-    conn.execute(
-        "INSERT INTO task (name) VALUES (?1)",
-        params![me.name],
-    )?;
+    conn.execute("INSERT INTO task (name) VALUES (?1)", params![me.name])?;
 
     Ok(())
 }
 
-fn get_tasks(conn: &Connection) -> Result<Vec<String>> {
+fn get_tasks(conn: &Connection) -> Result<Vec<Task>> {
     let mut stmt = conn.prepare("SELECT rowid, name FROM task")?;
-    let rows = stmt.query_map([], |row| row.get(1))?;
+    let rows = stmt.query_map([], |row| {
+        Ok(Task {
+            id: row.get(0)?,
+            name: row.get(1)?,
+        })
+    })?;
 
     let mut names = Vec::new();
     for name_result in rows {
