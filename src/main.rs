@@ -6,11 +6,21 @@ use std::fs;
 enum Cli {
     Init,
     #[structopt(alias = "t")]
-    Tasks(Tasks)
+    Tasks(Tasks),
+    #[structopt(alias = "l")]
+    Lists(Lists)
 }
 
 #[derive(StructOpt, Debug)]
 enum Tasks {
+    #[structopt(name = "get", alias = "g")]
+    Get(GetOperation),
+    #[structopt(name = "add", alias = "a")]
+    Add(AddOperation),
+}
+
+#[derive(StructOpt, Debug)]
+enum Lists {
     #[structopt(name = "get", alias = "g")]
     Get(GetOperation),
     #[structopt(name = "add", alias = "a")]
@@ -75,6 +85,16 @@ fn handle_subcommand(cli: Cli) -> Result<()> {
                         let _ = setup_db(&conn);
 
                         add_task(&conn, cfg.message).expect("failed to add task");
+                    }
+                }
+            }
+            Cli::Lists(lists) => {
+                match lists {
+                    Lists::Get(_cfg) => {
+                        println!("Lists Get");
+                    },
+                    Lists::Add(_cfg) => {
+                        println!("Lists Add");
                     }
                 }
             }
