@@ -3,25 +3,30 @@
 
 Command line tool for tracking tasks
 
-## Getting started
+## Introduction
+### Installation
 ```
 scoop install tasklist
 ```
-
+```
+cargo install tasklist
+```
+### Getting started
+cd to your chosen dir and run
 ```
 tl init
 ```
 
-# Tasks
+## Tasks
 
-## Adding a task
+### Adding a task
 
 ```
 tl tasks add -m "Catch up with colleague around X" -d nw
 tl t a -m "Catch up with colleague around X" -d nw
 ```
 
-## Viewing tasks
+### Viewing tasks
 
 Get all tasks in the current list that are due today
 ```
@@ -29,15 +34,15 @@ tl tasks get -d td
 tl t g -d td
 ```
 
-# Lists
+## Lists
 
-## Adding a list
+### Adding a list
 ```
 tl lists add mynewlist
 tl l a mynewlist
 ```
 
-## Active list
+### Active list
 ```
 tl config set-list --current --list=mynewlist
 ```
