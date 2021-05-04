@@ -1,23 +1,32 @@
-use structopt::clap::arg_enum;
 use structopt::StructOpt;
 use rusqlite::{params, Connection, Result};
 use std::fs;
 
-arg_enum! {
-    #[derive(Debug)]
-    enum Operation {
-        Get,
-        Add
-    }
-}
-
 #[derive(StructOpt, Debug)]
 enum Cli {
     Init,
-    Tasks {
-        #[structopt(possible_values = &Operation::variants(), case_insensitive = true)]
-        operation: Option<Operation>
-    }
+    #[structopt(alias = "t")]
+    Tasks(Tasks)
+}
+
+#[derive(StructOpt, Debug)]
+enum Tasks {
+    #[structopt(name = "get", alias = "g")]
+    Get(GetOperation),
+    #[structopt(name = "add", alias = "a")]
+    Add(AddOperation),
+}
+
+#[derive(StructOpt, Debug)]
+struct AddOperation {
+    #[structopt(short)]
+    message: String
+}
+
+#[derive(StructOpt, Debug)]
+struct GetOperation {
+    #[structopt(short)]
+    due: Option<String>
 }
 
 #[derive(Debug)]
@@ -50,25 +59,23 @@ fn handle_subcommand(cli: Cli) -> Result<()> {
                 println!("Created dir");
                 let _ = fs::create_dir(".tasklist");
             }
-            Cli::Tasks{ operation } => {
-                //println!("Get {}", operation.unwrap());
-                match operation {
-                    Some(Operation::Get) => {
+            Cli::Tasks(tasks) => {
+                match tasks {
+                    Tasks::Get(_cfg) => {
                         let conn = Connection::open(".tasklist/default.db")?;
                         let _ = setup_db(&conn);
 
                         let task_iter = get_tasks(&conn);
                         for task in &task_iter.unwrap() {
-                            println!("Found task {}", task);
+                            println!("Task: {}", task);
                         }
                     },
-                    Some(Operation::Add) => {
+                    Tasks::Add(cfg) => {
                         let conn = Connection::open(".tasklist/default.db")?;
                         let _ = setup_db(&conn);
 
-                        add_task(&conn, "Sample task".to_string()).expect("failed to add task");
-                    },
-                    None => {}
+                        add_task(&conn, cfg.message).expect("failed to add task");
+                    }
                 }
             }
         }
