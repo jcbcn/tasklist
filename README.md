@@ -34,6 +34,13 @@ tl tasks get -d td
 tl t g -d td
 ```
 
+### Completing a task
+
+```
+tl tasks complete 1234
+tl t c 1234
+```
+
 ## Lists
 
 ### Adding a list
