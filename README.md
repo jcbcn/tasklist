@@ -15,6 +15,7 @@ tl init
 ## Adding a list
 ```
 tl lists add mynewlist
+tl l a mynewlist
 ```
 
 ## Active list
@@ -26,34 +27,42 @@ tl config set-list --current --list=mynewlist
 
 ```
 tl tasks add -m "Catch up with colleague around X" -d nw -t mytag
+tl t a -m "Catch up with colleague around X" -d nw -t mytag
 ```
 
 ## Viewing tasks
 Get all tasks in all lists
 ```
-tl get tasks -all
+tl tasks get -all
+tl t g -a
 ```
 Get all tasks in a specific list
 ```
-tl get tasks -l mynewlist
+tl tasks get -l mynewlist
+tl t g -l mynewlist
 ```
 Get all tasks in the current list that are due in the next week
 ```
-tl get tasks -d nw
+tl tasks get -d nw
+tl t g -d nw
 ```
 Get all tasks in the current list that are due this week
 ```
-tl get tasks -d tw
+tl tasks get -d tw
+tl t g -d tw
 ```
 Get all tasks in the current list that are due today
 ```
-tl get tasks -d td
+tl tasks get -d td
+tl t g -d td
 ```
 Get all tasks in the current list that are due tomorrow
 ```
-tl get tasks -d tm
+tl tasks get -d tm
+tl t g -d tm
 ```
 Get all tasks in the current list with a specified tag
 ```
-tl get tasks -t mytag
+tl tasks get -t mytag
+tl t g -t mytag
 ```
