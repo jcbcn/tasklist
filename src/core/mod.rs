@@ -5,6 +5,7 @@ pub struct Task {
     pub id: Option<u64>,
     pub name: String,
     pub due: Option<NaiveDateTime>,
+    pub completed: bool
 }
 
 // enum Due {

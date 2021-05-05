@@ -19,6 +19,8 @@ enum Tasks {
     Get(GetOperation),
     #[structopt(name = "add", alias = "a")]
     Add(AddOperation),
+    #[structopt(name = "complete", alias = "c")]
+    Complete(CompleteOperation),
 }
 
 #[derive(StructOpt, Debug)]
@@ -27,6 +29,12 @@ enum Lists {
     Get(GetOperation),
     #[structopt(name = "add", alias = "a")]
     Add(AddOperation),
+}
+
+#[derive(StructOpt, Debug)]
+struct GetOperation {
+    #[structopt(short)]
+    due: Option<String>,
 }
 
 #[derive(StructOpt, Debug)]
@@ -39,16 +47,18 @@ struct AddOperation {
     recurs_daily: Option<bool>,
 }
 
+#[derive(StructOpt, Debug)]
+struct CompleteOperation {
+    #[structopt(short)]
+    id: u64,
+}
+
+
 fn parse_naivedatetime(src: &str) -> Result<NaiveDateTime, chrono::ParseError> {
     //check if Due enum
     NaiveDateTime::parse_from_str(src, "%Y-%m-%d %H:%M:%S")
 }
 
-#[derive(StructOpt, Debug)]
-struct GetOperation {
-    #[structopt(short)]
-    due: Option<String>,
-}
 
 fn main() -> Result<()> {
     let args = Cli::from_args();
@@ -77,6 +87,9 @@ fn handle_subcommand(cli: Cli) -> Result<()> {
             }
             Tasks::Add(cfg) => {
                 let _ = io::add_task(cfg.message, cfg.due);
+            },
+            Tasks::Complete(cfg) => {
+                let _ = io::complete_task(cfg.id);
             }
         },
         Cli::Lists(lists) => match lists {
