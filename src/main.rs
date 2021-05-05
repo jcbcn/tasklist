@@ -61,13 +61,13 @@ fn main() -> Result<()> {
 fn handle_subcommand(cli: Cli) -> Result<()> {
     match cli {
         Cli::Init => {
+            let _ = io::init();
             println!("Created dir");
-            io::init();
         }
         Cli::Tasks(tasks) => match tasks {
             Tasks::Get(_cfg) => {
-                let task_iter = io::get_tasks();
-                for task in &task_iter.unwrap() {
+                let tasks = io::get_tasks();
+                for task in &tasks.unwrap() {
                     if let Some(due) = task.due {
                         println!("[{}][{}] {}", task.id.unwrap(), due, task.name);
                     } else {
