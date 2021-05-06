@@ -2,25 +2,25 @@ use rusqlite::Result;
 use structopt::StructOpt;
 mod cli;
 mod core;
-mod io;
+mod db;
 
 fn main() -> Result<()> {
-    let args = cli::Cli::from_args();
+    let args = cli::Commands::from_args();
 
     let _ = handle_command(args);
 
     Ok(())
 }
 
-fn handle_command(cli: cli::Cli) -> Result<()> {
+fn handle_command(cli: cli::Commands) -> Result<()> {
     match cli {
-        cli::Cli::Init => {
-            let _ = io::init();
+        cli::Commands::Init => {
+            let _ = db::init();
             println!("Created dir");
         }
-        cli::Cli::Tasks(tasks) => match tasks {
+        cli::Commands::Tasks(tasks) => match tasks {
             cli::Tasks::Get(_cfg) => {
-                let tasks = io::get_tasks();
+                let tasks = db::get_tasks();
                 for task in &tasks.unwrap() {
                     if let Some(due) = task.due {
                         println!("[{}][{}] {}", task.id.unwrap(), due, task.name);
@@ -30,13 +30,13 @@ fn handle_command(cli: cli::Cli) -> Result<()> {
                 }
             }
             cli::Tasks::Add(cfg) => {
-                let _ = io::add_task(cfg.message, cfg.due);
+                let _ = db::add_task(cfg.message, cfg.due);
             }
             cli::Tasks::Complete(cfg) => {
-                let _ = io::complete_task(cfg.id);
+                let _ = db::complete_task(cfg.id);
             }
         },
-        cli::Cli::Lists(lists) => match lists {
+        cli::Commands::Lists(lists) => match lists {
             cli::Lists::Get(_cfg) => {
                 println!("Lists Get");
             }

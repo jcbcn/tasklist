@@ -2,7 +2,7 @@ use chrono::NaiveDateTime;
 use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
-pub enum Cli {
+pub enum Commands {
     Init,
     #[structopt(alias = "t")]
     Tasks(Tasks),
@@ -13,29 +13,29 @@ pub enum Cli {
 #[derive(StructOpt, Debug)]
 pub enum Tasks {
     #[structopt(name = "get", alias = "g")]
-    Get(GetOperation),
+    Get(GetTasksArguments),
     #[structopt(name = "add", alias = "a")]
-    Add(AddOperation),
+    Add(AddTasksArguments),
     #[structopt(name = "complete", alias = "c")]
-    Complete(CompleteOperation),
+    Complete(CompleteTasksArguments),
 }
 
 #[derive(StructOpt, Debug)]
 pub enum Lists {
     #[structopt(name = "get", alias = "g")]
-    Get(GetOperation),
+    Get(GetListsArguments),
     #[structopt(name = "add", alias = "a")]
-    Add(AddOperation),
+    Add(AddListsArguments),
 }
 
 #[derive(StructOpt, Debug)]
-pub struct GetOperation {
+pub struct GetTasksArguments {
     #[structopt(short)]
     due: Option<String>,
 }
 
 #[derive(StructOpt, Debug)]
-pub struct AddOperation {
+pub struct AddTasksArguments {
     #[structopt(short)]
     pub message: String,
     #[structopt(short, parse(try_from_str = parse_naivedatetime))]
@@ -45,10 +45,16 @@ pub struct AddOperation {
 }
 
 #[derive(StructOpt, Debug)]
-pub struct CompleteOperation {
+pub struct CompleteTasksArguments {
     #[structopt(short)]
     pub id: u64,
 }
+
+#[derive(StructOpt, Debug)]
+pub struct GetListsArguments {}
+
+#[derive(StructOpt, Debug)]
+pub struct AddListsArguments {}
 
 fn parse_naivedatetime(src: &str) -> Result<NaiveDateTime, chrono::ParseError> {
     //check if Due enum
