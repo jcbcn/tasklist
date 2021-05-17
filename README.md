@@ -40,16 +40,3 @@ tl t g -d td
 tl tasks complete 1234
 tl t c 1234
 ```
-
-## Lists
-
-### Adding a list
-```
-tl lists add mynewlist
-tl l a mynewlist
-```
-
-### Active list
-```
-tl config set-list --current --list=mynewlist
-```
