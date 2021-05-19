@@ -1,8 +1,8 @@
-use chrono::NaiveDateTime;
+use chrono::NaiveDate;
 use structopt::StructOpt;
 use std::str::FromStr;
 use crate::core::Due;
-use crate::core::NaiveDateTimeMethods;
+use crate::core::NaiveDateMethods;
 
 #[derive(StructOpt, Debug)]
 pub enum Commands {
@@ -33,16 +33,16 @@ pub enum Lists {
 
 #[derive(StructOpt, Debug)]
 pub struct GetTasksArguments {
-    #[structopt(short, parse(try_from_str = parse_naivedatetime))]
-    pub due: Option<NaiveDateTime>,
+    #[structopt(short, parse(try_from_str = parse_naive_date))]
+    pub due: Option<NaiveDate>,
 }
 
 #[derive(StructOpt, Debug)]
 pub struct AddTasksArguments {
     #[structopt(short)]
     pub message: String,
-    #[structopt(short, parse(try_from_str = parse_naivedatetime))]
-    pub due: Option<NaiveDateTime>,
+    #[structopt(short, parse(try_from_str = parse_naive_date))]
+    pub due: Option<NaiveDate>,
     #[structopt(short = "rd")]
     pub recurs_daily: Option<bool>,
 }
@@ -59,10 +59,10 @@ pub struct GetListsArguments {}
 #[derive(StructOpt, Debug)]
 pub struct AddListsArguments {}
 
-fn parse_naivedatetime(src: &str) -> Result<NaiveDateTime, chrono::ParseError> {
-    let due : Result<NaiveDateTime, chrono::ParseError> = match src.parse() {
-        Ok(due) => NaiveDateTime::parse_from_due(due),
-        Err(()) => NaiveDateTime::parse_from_str(src, "%Y-%m-%d %H:%M:%S")
+fn parse_naive_date(src: &str) -> Result<NaiveDate, chrono::ParseError> {
+    let due : Result<NaiveDate, chrono::ParseError> = match src.parse() {
+        Ok(due) => NaiveDate::parse_from_due(due),
+        Err(()) => NaiveDate::parse_from_str(src, "%Y-%m-%d %H:%M:%S")
     };
 
     due
@@ -77,10 +77,6 @@ impl FromStr for Due {
             "td" => Ok(Due::Today),
             "tomorrow"  => Ok(Due::Tomorrow),
             "tm"  => Ok(Due::Tomorrow),
-            "thisWeek"  => Ok(Due::ThisWeek),
-            "tw"  => Ok(Due::ThisWeek),
-            "nextWeek"  => Ok(Due::NextWeek),
-            "nw"  => Ok(Due::NextWeek),
             "monday"  => Ok(Due::Monday),
             "mon"  => Ok(Due::Monday),
             "tuesday"  => Ok(Due::Tuesday),

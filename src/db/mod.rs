@@ -1,5 +1,5 @@
 use crate::core::Task;
-use chrono::NaiveDateTime;
+use chrono::NaiveDate;
 use rusqlite::{params, Connection, Result};
 use std::fs;
 
@@ -13,7 +13,7 @@ pub fn init() -> Result<()> {
     conn.execute(
         "CREATE TABLE task (
             name            TEXT NOT NULL,
-            due             DATETIME NULL,
+            due             DATE NULL,
             completed       BOOLEAN DEFAULT(FALSE)
         )",
         [],
@@ -44,7 +44,7 @@ pub fn get_tasks() -> Result<Vec<Task>> {
     Ok(names)
 }
 
-pub fn add_task(task: String, due: Option<NaiveDateTime>) -> Result<()> {
+pub fn add_task(task: String, due: Option<NaiveDate>) -> Result<()> {
     let conn = Connection::open(DEFAULT_DB)?;
 
     let me = Task {
