@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Download artifact
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        workflow: build.yml
+    - name: Build
+      run: cargo build --release --verbose
+    - name: Run tests
+      run: cargo test --verbose
     - name: Create Release
-      run: gh release create v1.2.3 tl/tasklist-cli
+      run: gh release create ${GITHUB_SHA::6} /home/runner/work/tasklist-cli/tasklist-cli/target/release/tasklist-cli
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
