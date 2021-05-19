@@ -20,9 +20,8 @@ fn handle_command(cli: cli::Commands) -> Result<()> {
         }
         cli::Commands::Tasks(tasks) => match tasks {
             cli::Tasks::Get(_cfg) => {
-                let tasks = db::get_tasks();
+                let tasks = db::get_tasks(_cfg.due);
                 for task in &tasks.unwrap() {
-                    println!("{:?}", _cfg.due);
                     if let Some(due) = task.due {
                         println!("[{}][{}] {}", task.id.unwrap(), due, task.name);
                     } else {

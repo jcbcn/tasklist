@@ -1,3 +1,4 @@
+use rusqlite::ToSql;
 use crate::core::Task;
 use chrono::NaiveDate;
 use rusqlite::{params, Connection, Result};
@@ -22,12 +23,19 @@ pub fn init() -> Result<()> {
     Ok(())
 }
 
-pub fn get_tasks() -> Result<Vec<Task>> {
+pub fn get_tasks(due: Option<NaiveDate>) -> Result<Vec<Task>> {
     let conn = Connection::open(DEFAULT_DB)?;
 
-    let mut stmt =
-        conn.prepare("SELECT rowid, name, due, completed FROM task WHERE completed = FALSE")?;
-    let rows = stmt.query_map([], |row| {
+    let mut query = "SELECT rowid, name, due, completed FROM task WHERE completed = FALSE".to_owned();
+    let mut params:Vec<&dyn ToSql> = vec![];
+
+    if due.is_some() {
+        query = format!("{} AND due = ?", query);
+        params.push(&due)
+    }
+
+    let mut stmt = conn.prepare(&query)?;
+    let rows = stmt.query_map(&*params, |row| {
         Ok(Task {
             id: row.get(0)?,
             name: row.get(1)?,
