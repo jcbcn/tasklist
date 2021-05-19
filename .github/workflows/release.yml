@@ -7,11 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - run: rustup target add x86_64-pc-windows-gnu
+    - run: rustup toolchain install stable-x86_64-pc-windows-gnu
     - name: Build
-      run: cargo build --release --verbose
+      run: cargo build --target x86_64-pc-windows-gnu --release --verbose
     - name: Run tests
       run: cargo test --verbose
     - name: Create Release
-      run: gh release create ${GITHUB_SHA::6} /home/runner/work/tasklist-cli/tasklist-cli/target/release/tasklist-cli
+      run: gh release create ${GITHUB_SHA::6} /home/runner/work/tasklist-cli/tasklist-cli/target/release/tasklist-cli.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
