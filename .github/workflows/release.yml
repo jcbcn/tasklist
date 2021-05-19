@@ -11,6 +11,6 @@ jobs:
       with:
         workflow: build.yml
     - name: GitHub CLI Auth
-      run: gh auth login
+      run: gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
-      run: gh release create v1.2.3
+      run: gh release create v1.2.3 tl/tasklist-cli
