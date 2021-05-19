@@ -23,4 +23,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: tl
-        path: /home/runner/work/tasklist-cli/tasklist-cli/target/debug/tasklist-cli.exe
+        path: /home/runner/work/tasklist-cli/tasklist-cli/target/debug/tasklist-cli
