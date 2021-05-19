@@ -1,5 +1,5 @@
 # tasklist-cli
-[![Rust](https://github.com/jcbcn/tasklist-cli/actions/workflows/rust.yml/badge.svg)](https://github.com/jcbcn/tasklist-cli/actions/workflows/rust.yml)
+[![Rust](https://github.com/jcbcn/tasklist-cli/actions/workflows/build.yml/badge.svg)](https://github.com/jcbcn/tasklist-cli/actions/workflows/build.yml)
 
 Command line tool for tracking tasks
 
