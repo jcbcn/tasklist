@@ -9,8 +9,6 @@ pub enum Commands {
     Init,
     #[structopt(alias = "t")]
     Tasks(Tasks),
-    #[structopt(alias = "l")]
-    Lists(Lists),
 }
 
 #[derive(StructOpt, Debug)]
@@ -21,14 +19,6 @@ pub enum Tasks {
     Add(AddTasksArguments),
     #[structopt(name = "complete", alias = "c")]
     Complete(CompleteTasksArguments),
-}
-
-#[derive(StructOpt, Debug)]
-pub enum Lists {
-    #[structopt(name = "get", alias = "g")]
-    Get(GetListsArguments),
-    #[structopt(name = "add", alias = "a")]
-    Add(AddListsArguments),
 }
 
 #[derive(StructOpt, Debug)]

@@ -1,0 +1,24 @@
+{
+    "version": "fff439",
+    "description": "Command line tool for tracking tasks.",
+    "homepage": "https://github.com/jcbcn/tasklist-cli",
+    "license": {
+        "identifier": "MIT License",
+        "url": "https://github.com/jcbcn/tasklist-cli/blob/main/LICENSE"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/jcbcn/tasklist-cli/releases/download/fff439/tl.exe",
+            "hash": "72d632018ed511cd1a0f0e5a6ab4362e7c1a0d759d3bd24639e5fd07793c266e"
+        }
+    },
+    "bin": "tl.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/jcbcn/tasklist-cli/releases/download/$version/tl.exe"
+            }
+        }
+    }
+}

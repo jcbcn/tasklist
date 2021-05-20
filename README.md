@@ -6,6 +6,9 @@ Command line tool for tracking tasks
 ## Introduction
 ### Installation
 ```
+scoop bucket add tasklist https://github.com/jcbcn/tasklist-cli
+```
+```
 scoop install tasklist
 ```
 ### Getting started

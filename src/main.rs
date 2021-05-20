@@ -16,7 +16,6 @@ fn handle_command(cli: cli::Commands) -> Result<()> {
     match cli {
         cli::Commands::Init => {
             let _ = db::init();
-            println!("Created dir");
         }
         cli::Commands::Tasks(tasks) => match tasks {
             cli::Tasks::Get(_cfg) => {
@@ -35,15 +34,7 @@ fn handle_command(cli: cli::Commands) -> Result<()> {
             cli::Tasks::Complete(cfg) => {
                 let _ = db::complete_task(cfg.id);
             }
-        },
-        cli::Commands::Lists(lists) => match lists {
-            cli::Lists::Get(_cfg) => {
-                println!("Lists Get");
-            }
-            cli::Lists::Add(_cfg) => {
-                println!("Lists Add");
-            }
-        },
+        }
     }
 
     Ok(())
