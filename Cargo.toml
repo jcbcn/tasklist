@@ -13,3 +13,7 @@ chrono = "0.4"
 [dependencies.rusqlite]
 version = "0.25.1"
 features = ["bundled", "chrono"]
+
+[[bin]]
+name = "tl"
+path = "src/main.rs"

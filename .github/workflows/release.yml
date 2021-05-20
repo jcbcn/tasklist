@@ -15,6 +15,6 @@ jobs:
     - name: Run tests
       run: cargo test --verbose
     - name: Create Release
-      run: gh release create ${GITHUB_SHA::6} /home/runner/work/tasklist-cli/tasklist-cli/target/x86_64-pc-windows-gnu/release/tasklist-cli.exe
+      run: gh release create ${GITHUB_SHA::6} /home/runner/work/tasklist-cli/tasklist-cli/target/x86_64-pc-windows-gnu/release/tl.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
