@@ -8,11 +8,8 @@ Command line tool for tracking tasks
 ```
 scoop install tasklist
 ```
-```
-cargo install tasklist
-```
 ### Getting started
-cd to your chosen dir and run
+`cd` to your chosen directory and run
 ```
 tl init
 ```
@@ -22,13 +19,13 @@ tl init
 ### Adding a task
 
 ```
-tl tasks add -m "Catch up with colleague around X" -d nw
-tl t a -m "Catch up with colleague around X" -d nw
+tl tasks add -m "Catch up with colleague around X" -d tm
+tl t a -m "Catch up with colleague around X" -d tm
 ```
 
 ### Viewing tasks
 
-Get all tasks in the current list that are due today
+Get all tasks due today
 ```
 tl tasks get -d td
 tl t g -d td
