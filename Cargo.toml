@@ -17,3 +17,8 @@ features = ["bundled", "chrono"]
 [[bin]]
 name = "tl"
 path = "src/main.rs"
+
+[dev-dependencies]
+assert_cmd = "0.10"
+predicates = "1"
+tempdir = "0.3"
