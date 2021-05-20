@@ -17,7 +17,10 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/jcbcn/tasklist-cli/releases/download/$version/tl.exe"
+                "url": "https://github.com/jcbcn/tasklist-cli/releases/download/$version/tl.exe",
+                "hash": {
+                    "url": "https://github.com/jcbcn/tasklist-cli/releases/download/$version/checksum"
+                }
             }
         }
     }

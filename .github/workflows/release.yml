@@ -14,11 +14,11 @@ jobs:
       run: cargo build --target x86_64-pc-windows-gnu --release --verbose
     - name: Run tests
       run: cargo test --verbose
-    - name: cd
-      run: cd /home/runner/work/tasklist-cli/tasklist-cli/target/x86_64-pc-windows-gnu/release/
     - name: Hash
       run: sha512sum tl.exe | cut -d " " -f 1 > checksum
+      working-directory: /home/runner/work/tasklist-cli/tasklist-cli/target/x86_64-pc-windows-gnu/release/
     - name: Create Release
       run: gh release create ${GITHUB_SHA::6} tl.exe checksum
+      working-directory: /home/runner/work/tasklist-cli/tasklist-cli/target/x86_64-pc-windows-gnu/release/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
