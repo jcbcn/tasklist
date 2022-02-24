@@ -20,7 +20,7 @@ jobs:
       run: sha512sum tl.exe | cut -d " " -f 1 > checksum
       working-directory: /home/runner/work/tasklist/tasklist/target/x86_64-pc-windows-gnu/release/
     - name: Hash
-      run: sha512sum tl | cut -d " " -f 1 > checksum
+      run: sha512sum tl | cut -d " " -f 1 > tl.checksum
       working-directory: /home/runner/work/tasklist/tasklist/target/release/
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v2
