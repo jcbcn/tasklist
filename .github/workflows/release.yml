@@ -22,6 +22,6 @@ jobs:
       id: semantic
       with:
         branch: main
-        working-directory: /home/runner/work/tasklist/tasklist/target/x86_64-pc-windows-gnu/release/
+      working-directory: /home/runner/work/tasklist/tasklist/target/x86_64-pc-windows-gnu/release/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

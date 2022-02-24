@@ -8,7 +8,6 @@
             {
                 "assets": ["tl.exe", "checksum"]
             }
-        ],
-        "@semantic-release/git"
+        ]
     ]
 }
