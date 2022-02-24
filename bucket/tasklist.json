@@ -1,5 +1,5 @@
 {
-    "version": "a9380c",
+    "version": "1.0.0",
     "description": "Command line tool for tracking tasks.",
     "homepage": "https://github.com/jcbcn/tasklist-cli",
     "license": {
@@ -8,18 +8,18 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jcbcn/tasklist-cli/releases/download/a9380c/tl.exe",
-            "hash": "sha512:309e752e926e4025373c676a716cac8533ad5a5e9cc607caccb5e338ffb9c8d4cab056e273bbad693a889bcd6f9bfc2c1556ae1ab6880de8f1b2357d4eaf7d6f"
+            "url": "https://github.com/jcbcn/tasklist-cli/releases/download/v1.0.0/tl.exe",
+            "hash": "sha512:d2de32bb4265bb0e453a9d7ca74605fca09f7f79c4c40296a35a580cb7ef7de642e5ba4140aa4b7768e078261d40d3bafe6e89e9e01709cdefaf39f42f7f1cf4"
         }
     },
     "bin": "tl.exe",
-    "checkver": "/releases/tag/([a-zA-Z0-9]{6,})",
+    "checkver": "/releases/tag/(?:v|V)?([\\d.]+)",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/jcbcn/tasklist-cli/releases/download/$version/tl.exe",
+                "url": "https://github.com/jcbcn/tasklist-cli/releases/download/v$version/tl.exe",
                 "hash": {
-                    "url": "https://github.com/jcbcn/tasklist-cli/releases/download/$version/checksum"
+                    "url": "https://github.com/jcbcn/tasklist-cli/releases/download/v$version/checksum"
                 }
             }
         }
