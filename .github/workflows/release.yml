@@ -23,6 +23,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
+      if: steps.semantic.outputs.new_release_published == 'true'
       run: gh release create ${{ steps.semantic.outputs.new_release_version }} tl.exe checksum
       working-directory: /home/runner/work/tasklist/tasklist/target/x86_64-pc-windows-gnu/release/
       env:
