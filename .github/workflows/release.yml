@@ -17,8 +17,13 @@ jobs:
     - name: Hash
       run: sha512sum tl.exe | cut -d " " -f 1 > checksum
       working-directory: /home/runner/work/tasklist/tasklist/target/x86_64-pc-windows-gnu/release/
+    - name: Semantic Release
+      uses: cycjimmy/semantic-release-action@v2
+      id: semantic
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
-      run: gh release create ${GITHUB_SHA::6} tl.exe checksum
+      run: gh release create ${{ steps.semantic.outputs.new_release_version }} tl.exe checksum
       working-directory: /home/runner/work/tasklist/tasklist/target/x86_64-pc-windows-gnu/release/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
