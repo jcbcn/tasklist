@@ -22,6 +22,8 @@ jobs:
       id: semantic
       with:
         branch: main
+        extra_plugins: |
+          @semantic-release/git
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
