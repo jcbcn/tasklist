@@ -1,12 +1,19 @@
 {
-    "branches": ["main"],
+    "branches": [
+        "main"
+    ],
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
         [
             "@semantic-release/github",
             {
-                "assets": ["tl.exe", "checksum"]
+                "assets": [
+                    "target/x86_64-pc-windows-gnu/release/tl.exe",
+                    "target/x86_64-pc-windows-gnu/release/checksum",
+                    "target/release/tl",
+                    "target/release/tl.checksum"
+                ]
             }
         ]
     ]
