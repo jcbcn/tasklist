@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Command line tool for tracking tasks.",
     "homepage": "https://github.com/jcbcn/tasklist-cli",
     "license": {
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jcbcn/tasklist-cli/releases/download/v1.0.0/tl.exe",
-            "hash": "sha512:d2de32bb4265bb0e453a9d7ca74605fca09f7f79c4c40296a35a580cb7ef7de642e5ba4140aa4b7768e078261d40d3bafe6e89e9e01709cdefaf39f42f7f1cf4"
+            "url": "https://github.com/jcbcn/tasklist-cli/releases/download/v1.1.0/tl.exe",
+            "hash": "sha512:94df6789a1029668306db40536d788a8327f1e9b8172f0bc8ccd78e76edfe314eea56914dc158868c1abd2a0fce77566cc593cc8152242555a1ccafa6f579f0c"
         }
     },
     "bin": "tl.exe",
