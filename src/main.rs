@@ -6,15 +6,16 @@ mod cli;
 mod core;
 mod db;
 
-fn main() -> Result<()> {
+#[actix_web::main]
+async fn main() -> Result<()> {
     let args = cli::Commands::from_args();
 
-    let _ = handle_command(args);
+    let _ = handle_command(args).await;
 
     Ok(())
 }
 
-fn handle_command(cli: cli::Commands) -> Result<()> {
+async fn handle_command(cli: cli::Commands) -> Result<()> {
     match cli {
         cli::Commands::Init => {
             let _ = db::init();
@@ -36,9 +37,9 @@ fn handle_command(cli: cli::Commands) -> Result<()> {
             cli::Tasks::Complete(cfg) => {
                 let _ = db::complete_task(cfg.id);
             }
-        }
+        },
         cli::Commands::Run => {
-            let _ = server::start(); //TODO .await
+            let _ = server::start().await;
         }
     }
 

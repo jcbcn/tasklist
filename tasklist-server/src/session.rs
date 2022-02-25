@@ -77,6 +77,9 @@ impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for WsChatSession {
             ws::Message::Pong(_) => {
                 self.hb = Instant::now();
             }
+            ws::Message::Text(_) => {
+                ctx.text(sys_info::hostname().unwrap());
+            }
             ws::Message::Binary(_) => println!("Unexpected binary"),
             ws::Message::Close(reason) => {
                 ctx.close(reason);
@@ -86,9 +89,6 @@ impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for WsChatSession {
                 ctx.stop();
             }
             ws::Message::Nop => (),
-            _ => {
-                log::error!("Recieved unexpected message");
-            },
         }
     }
 }

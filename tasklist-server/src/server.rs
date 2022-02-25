@@ -18,7 +18,6 @@ async fn websocket(req: HttpRequest, stream: web::Payload) -> Result<HttpRespons
     )
 }
 
-#[actix_web::main]
 pub async fn start() -> std::io::Result<()> {
     env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
 

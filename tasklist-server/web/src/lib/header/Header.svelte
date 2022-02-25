@@ -10,13 +10,16 @@
 		socket = new WebSocket('ws://localhost:8080/ws');
 		socket.addEventListener('open', () => {
 			status = 'connected';
-			socket.send('test');
+			socket.send('test'); //call to get hostname
 		});
 		socket.addEventListener('close', () => {
 			status = 'disconnected';
 		});
 		socket.addEventListener('error', () => {
 			status = 'disconnected';
+		});
+		socket.addEventListener('message', function (event) { //recieve hostname
+    		status = event.data;
 		});
 	});
 </script>
