@@ -1,5 +1,7 @@
 use rusqlite::Result;
 use structopt::StructOpt;
+use tasklist_server::server;
+
 mod cli;
 mod core;
 mod db;
@@ -34,6 +36,9 @@ fn handle_command(cli: cli::Commands) -> Result<()> {
             cli::Tasks::Complete(cfg) => {
                 let _ = db::complete_task(cfg.id);
             }
+        }
+        cli::Commands::Run => {
+            let _ = server::start();
         }
     }
 

@@ -9,6 +9,7 @@ edition = "2018"
 [dependencies]
 structopt = "0.3.21"
 chrono = "0.4"
+tasklist-server = { path = "tasklist-server" }
 
 [dependencies.rusqlite]
 version = "0.25.1"
@@ -22,3 +23,8 @@ path = "src/main.rs"
 assert_cmd = "0.10"
 predicates = "1"
 tempdir = "0.3"
+
+[workspace]
+members = [
+    "tasklist-server"
+]

@@ -9,6 +9,7 @@ pub enum Commands {
     Init,
     #[structopt(alias = "t")]
     Tasks(Tasks),
+    Run
 }
 
 #[derive(StructOpt, Debug)]
