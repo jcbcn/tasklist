@@ -38,7 +38,7 @@ fn handle_command(cli: cli::Commands) -> Result<()> {
             }
         }
         cli::Commands::Run => {
-            let _ = server::start();
+            let _ = server::start(); //TODO .await
         }
     }
 
