@@ -1,12 +1,12 @@
 # tasklist-cli
-[![Rust](https://github.com/jcbcn/tasklist-cli/actions/workflows/build.yml/badge.svg)](https://github.com/jcbcn/tasklist-cli/actions/workflows/build.yml)
+[![Rust](https://github.com/mentality-tools/tasklist/actions/workflows/build.yml/badge.svg)](https://github.com/mentality-tools/tasklist/actions/workflows/build.yml)
 
 Command line tool for tracking tasks
 
 ## Introduction
 ### Installation
 ```
-scoop bucket add tasklist https://github.com/jcbcn/tasklist-cli
+scoop bucket add tasklist https://github.com/mentality-tools/tasklist
 ```
 ```
 scoop install tasklist

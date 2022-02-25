@@ -1,14 +1,14 @@
 {
     "version": "1.2.0",
     "description": "Command line tool for tracking tasks.",
-    "homepage": "https://github.com/jcbcn/tasklist-cli",
+    "homepage": "https://github.com/mentality-tools/tasklist",
     "license": {
         "identifier": "MIT License",
-        "url": "https://github.com/jcbcn/tasklist-cli/blob/main/LICENSE"
+        "url": "https://github.com/mentality-tools/tasklist/blob/main/LICENSE"
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jcbcn/tasklist-cli/releases/download/v1.2.0/tl.exe",
+            "url": "https://github.com/mentality-tools/tasklist/releases/download/v1.2.0/tl.exe",
             "hash": "sha512:b6f5ae55c7e29facfb63a3f5cc92c73a16f8208c2941816178c2246f6fc9b2ae205659d999810699b6cf7ef680eed449e47b7ee3616c4838ed9eac4dd9ab71ef"
         }
     },
@@ -17,9 +17,9 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/jcbcn/tasklist-cli/releases/download/v$version/tl.exe",
+                "url": "https://github.com/mentality-tools/tasklist/releases/download/v$version/tl.exe",
                 "hash": {
-                    "url": "https://github.com/jcbcn/tasklist-cli/releases/download/v$version/checksum"
+                    "url": "https://github.com/mentality-tools/tasklist/releases/download/v$version/checksum"
                 }
             }
         }
