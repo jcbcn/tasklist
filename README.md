@@ -1,7 +1,7 @@
-# tasklist-cli
+# tasklist
 [![Rust](https://github.com/mentality-tools/tasklist/actions/workflows/build.yml/badge.svg)](https://github.com/mentality-tools/tasklist/actions/workflows/build.yml)
 
-Command line tool for tracking tasks
+Privacy focused tool for tracking day-to-day tasks.
 
 ## Introduction
 ### Installation
@@ -11,7 +11,18 @@ scoop bucket add tasklist https://github.com/mentality-tools/tasklist
 ```
 scoop install tasklist
 ```
+
 ### Getting started
+
+#### Server
+
+```
+tl run
+```
+Then navigate to `http://localhost:8080` in your browser.
+
+#### CLI
+
 `cd` to your chosen directory and run
 ```
 tl init
