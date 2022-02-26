@@ -18,8 +18,9 @@
 		socket.addEventListener('error', () => {
 			status = 'disconnected';
 		});
-		socket.addEventListener('message', function (event) { //recieve hostname
-    		status = event.data;
+		socket.addEventListener('message', function (event) {
+			//recieve hostname
+			status = event.data;
 		});
 	});
 </script>
@@ -44,7 +45,7 @@
 				<a sveltekit:prefetch href="/todos">Todos</a>
 			</li>
 			<li>
-				<a href="#">Status: {status}</a>
+				<a href="#"><span class="status">{status}</span><span class="{status === 'disconnected' ? 'offline-dot' : 'online-dot'}" /></a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -144,5 +145,25 @@
 
 	a:hover {
 		color: var(--accent-color);
+	}
+
+	.status {
+		margin-right:8px;
+	}
+
+	.online-dot {
+		height: 10px;
+		width: 10px;
+		background-color: greenyellow;
+		border-radius: 50%;
+		display: inline-block;
+	}
+
+	.offline-dot {
+		height: 10px;
+		width: 10px;
+		background-color: red;
+		border-radius: 50%;
+		display: inline-block;
 	}
 </style>
