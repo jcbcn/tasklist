@@ -1,5 +1,5 @@
 {
-    "version": "1.2.0",
+    "version": "1.5.0",
     "description": "Command line tool for tracking tasks.",
     "homepage": "https://github.com/mentality-tools/tasklist",
     "license": {
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/mentality-tools/tasklist/releases/download/v1.2.0/tl.exe",
-            "hash": "sha512:b6f5ae55c7e29facfb63a3f5cc92c73a16f8208c2941816178c2246f6fc9b2ae205659d999810699b6cf7ef680eed449e47b7ee3616c4838ed9eac4dd9ab71ef"
+            "url": "https://github.com/mentality-tools/tasklist/releases/download/v1.5.0/tl.exe",
+            "hash": "sha512:2ab16ff33c2c4213da857f5dadf6a0c9d70dea703e224a8cb48614ab3aab07fb3f516eae68226e12abda2eed3f82b84f1c76d5011224b08ff0c05d4256f56e08"
         }
     },
     "bin": "tl.exe",
