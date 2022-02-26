@@ -18,12 +18,16 @@ async fn websocket(req: HttpRequest, stream: web::Payload) -> Result<HttpRespons
     )
 }
 
+async fn open_server_address() {
+    open::that("http://localhost:8080").unwrap();
+} 
+
 pub async fn start() -> std::io::Result<()> {
     env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
 
     log::info!("starting HTTP server at http://localhost:8080");
 
-    HttpServer::new(move || {
+    let server = HttpServer::new(move || {
         let generated = generate();
         App::new()
             .route("/ws", web::get().to(websocket))
@@ -34,7 +38,10 @@ pub async fn start() -> std::io::Result<()> {
             .wrap(Logger::default())
     })
     .workers(1)
-    .bind("127.0.0.1:8080")?
-    .run()
-    .await
+    .bind("localhost:8080")?
+    .run();
+
+    tokio::join!(server, open_server_address());
+
+    Ok(())
 }

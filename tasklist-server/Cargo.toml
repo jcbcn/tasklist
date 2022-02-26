@@ -13,6 +13,8 @@ actix-web = "3.3.3"
 actix-web-static-files = "3.0.5"
 actix-web-actors = "3.0.0"
 sys-info = "0.9.1"
+open = "1"
+tokio = "1.17.0"
 
 env_logger = "0.9"
 log = "0.4"
