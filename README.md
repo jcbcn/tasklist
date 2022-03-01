@@ -3,8 +3,10 @@
 
 Privacy focused tool for tracking day-to-day tasks.
 
-## Introduction
-### Installation
+## Installation
+
+#### Scoop 
+
 ```
 scoop bucket add tasklist https://github.com/mentality-tools/tasklist
 ```
@@ -12,32 +14,37 @@ scoop bucket add tasklist https://github.com/mentality-tools/tasklist
 scoop install tasklist
 ```
 
-### Getting started
+#### Brew 
 
-#### Server
+```
+Coming Soon...
+```
+
+## Getting started
+
+`cd` to your chosen directory and run
+
+### Web UI
 
 ```
 tl run
 ```
-Then navigate to `http://localhost:8080` in your browser.
 
-#### CLI
+navigate to `http://localhost:8080` in your browser.
 
-`cd` to your chosen directory and run
+### Command Line
+
 ```
 tl init
 ```
 
-## Tasks
+#### Tasks
 
-### Adding a task
-
+Adding a task
 ```
 tl tasks add -m "Catch up with colleague around X" -d tm
 tl t a -m "Catch up with colleague around X" -d tm
 ```
-
-### Viewing tasks
 
 Get all tasks due today
 ```
@@ -45,8 +52,7 @@ tl tasks get -d td
 tl t g -d td
 ```
 
-### Completing a task
-
+Completing a task
 ```
 tl tasks complete 1234
 tl t c 1234
