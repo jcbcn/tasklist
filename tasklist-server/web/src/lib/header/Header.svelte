@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
 
 	import { onMount } from 'svelte';
 
@@ -26,135 +25,126 @@
 </script>
 
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
+	<nav class="bg-gray-800">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex items-center justify-between h-16">
+				<div class="flex items-center">
+					<div class="flex-shrink-0">
+						<img
+							class="h-8 w-8"
+							src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+							alt="Workflow"
+						/>
+					</div>
+					<div class="hidden md:block">
+						<div class="ml-10 flex items-baseline space-x-4">
+							<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+							<a
+								href="#"
+								class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+								aria-current="page">Dashboard</a
+							>
 
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a sveltekit:prefetch href="/about">About</a>
-			</li>
-			<li class:active={$page.url.pathname === '/todos'}>
-				<a sveltekit:prefetch href="/todos">Todos</a>
-			</li>
-			<li>
-				<a href="#"><span class="status">{status}</span><span class="{status === 'disconnected' ? 'offline-dot' : 'online-dot'}" /></a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
+							<a
+								href="#"
+								class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+								>Team</a
+							>
+
+							<a
+								href="#"
+								class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+								>Projects</a
+							>
+
+							<a
+								href="#"
+								class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+								>Calendar</a
+							>
+
+							<a
+								href="#"
+								class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+								>Reports</a
+							>
+						</div>
+					</div>
+				</div>
+				<div class="hidden md:block">
+					<div class="ml-4 flex items-center md:ml-6">
+						<a href="#" class="text-gray-300 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs font-small"
+							><span class="status uppercase">{status}</span><span
+								class={status === 'disconnected' ? 'offline-dot' : 'online-dot'}
+							/></a
+						>
+					</div>
+				</div>
+				<div class="-mr-2 flex md:hidden">
+					<!-- Mobile menu button -->
+					<button
+						type="button"
+						class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+						aria-controls="mobile-menu"
+						aria-expanded="false"
+					>
+						<span class="sr-only">Open main menu</span>
+						<!--
+				  Heroicon name: outline/menu
+	
+				  Menu open: "hidden", Menu closed: "block"
+				-->
+						<svg
+							class="block h-6 w-6"
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							aria-hidden="true"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16"
+							/>
+						</svg>
+						<!--
+				  Heroicon name: outline/x
+	
+				  Menu open: "block", Menu closed: "hidden"
+				-->
+						<svg
+							class="hidden h-6 w-6"
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							aria-hidden="true"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
 	</nav>
-
-	<div class="corner">
-		<!-- TODO put something else here? github link? -->
-	</div>
 </header>
 
 <style>
-	header {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
-
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
-
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
-	}
-
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li.active::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--accent-color);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 1em;
-		color: var(--heading-color);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
-
-	a:hover {
-		color: var(--accent-color);
-	}
-
 	.status {
-		margin-right:8px;
+		margin-right: 8px;
 	}
 
 	.online-dot {
 		height: 10px;
 		width: 10px;
-		background-color: greenyellow;
+		background-color: green;
 		border-radius: 50%;
 		display: inline-block;
 	}

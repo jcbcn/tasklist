@@ -3,43 +3,27 @@
 	import '../app.css';
 </script>
 
-<Header />
 
-<main>
-	<slot />
-</main>
+<div class="min-h-full">
 
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
+	<Header />
+  
+	<header class="bg-white shadow">
+	  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+		<h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
+	  </div>
+	</header>
+	<main>
+	  <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+		<!-- Replace with your content -->
+		<main>
+			<slot />
+		</main>
+		<!-- /End replace -->
+	  </div>
+	</main>
+	<footer class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-gray-400">
+		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	</footer>
+  </div>
 
-<style>
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 1024px;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
-	}
-</style>
