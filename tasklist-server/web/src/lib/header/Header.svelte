@@ -32,50 +32,32 @@
 			<div class="flex items-center justify-between h-16">
 				<div class="flex items-center">
 					<div class="flex-shrink-0">
-						<img
-							class="h-8 w-8"
-							src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-							alt="Workflow"
-						/>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-8 w-8 stroke-indigo-500 inline"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+							/>
+						</svg>
 					</div>
-					<div class="hidden md:block">
-						<div class="ml-10 flex items-baseline space-x-4">
-							<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-							<a
-								href="#"
-								class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-								aria-current="page">Dashboard</a
-							>
-
-							<a
-								href="#"
-								class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-								>Team</a
-							>
-
-							<a
-								href="#"
-								class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-								>Projects</a
-							>
-
-							<a
-								href="#"
-								class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-								>Calendar</a
-							>
-
-							<a
-								href="#"
-								class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-								>Reports</a
-							>
-						</div>
+				</div>
+				<div>
+					<div class="ml-4 flex items-center md:ml-6">
+						<span class="bg-indigo-500 rounded-full px-3 py-1 font-semibold text-gray-50">30 LP</span>
 					</div>
 				</div>
 				<div class="hidden md:block">
 					<div class="ml-4 flex items-center md:ml-6">
-						<a href="#" class="text-gray-300 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs font-small"
+						<a
+							href="#"
+							class="text-gray-300 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xs font-small"
 							><span class="status uppercase">{status}</span><span
 								class={status === 'disconnected' ? 'offline-dot' : 'online-dot'}
 							/></a
