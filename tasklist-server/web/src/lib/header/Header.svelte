@@ -10,6 +10,8 @@
 		socket.addEventListener('open', () => {
 			status = 'connected';
 			socket.send('test'); //call to get hostname
+
+			//socket.send('tasks');
 		});
 		socket.addEventListener('close', () => {
 			status = 'disconnected';

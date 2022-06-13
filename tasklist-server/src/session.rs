@@ -2,6 +2,9 @@ use std::time::{Duration, Instant};
 
 use actix::prelude::*;
 use actix_web_actors::ws;
+use chrono::Utc;
+
+use tasklist_core::db;
 
 /// How often heartbeat pings are sent
 const HEARTBEAT_INTERVAL: Duration = Duration::from_secs(5);
@@ -36,7 +39,7 @@ impl WsChatSession {
                 // don't try to send a ping
                 return;
             }
-            
+
             ctx.ping(b"");
         });
     }
@@ -77,9 +80,15 @@ impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for WsChatSession {
             ws::Message::Pong(_) => {
                 self.hb = Instant::now();
             }
-            ws::Message::Text(_) => {
-                ctx.text(sys_info::hostname().unwrap());
-            }
+            ws::Message::Text(msg) => match msg.as_str() {
+                "tasks" => {
+                    let tasks = db::get_tasks(Some(Utc::now().date().naive_utc()));
+                    for task in &tasks.unwrap() {
+                        ctx.text(task.name.clone());
+                    }
+                },
+                _ => ctx.text(sys_info::hostname().unwrap()),
+            },
             ws::Message::Binary(_) => println!("Unexpected binary"),
             ws::Message::Close(reason) => {
                 ctx.close(reason);

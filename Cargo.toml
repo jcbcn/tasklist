@@ -10,12 +10,9 @@ edition = "2018"
 structopt = "0.3.21"
 chrono = "0.4"
 tasklist-server = { path = "tasklist-server" }
+tasklist-core = { path = "tasklist-core" }
 tokio = { version = "1.17.0", features = ["full"] }
 actix-web = "3.3.3"
-
-[dependencies.rusqlite]
-version = "0.25.1"
-features = ["bundled", "chrono"]
 
 [[bin]]
 name = "tl"
@@ -28,5 +25,6 @@ tempdir = "0.3"
 
 [workspace]
 members = [
-    "tasklist-server"
+    "tasklist-server",
+    "tasklist-core"
 ]

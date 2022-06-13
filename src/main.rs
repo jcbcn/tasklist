@@ -1,21 +1,17 @@
-use rusqlite::Result;
 use structopt::StructOpt;
 use tasklist_server::server;
+use tasklist_core::db;
 
 mod cli;
-mod core;
-mod db;
 
 #[actix_web::main]
-async fn main() -> Result<()> {
+async fn main() {
     let args = cli::Commands::from_args();
 
     let _ = handle_command(args).await;
-
-    Ok(())
 }
 
-async fn handle_command(cli: cli::Commands) -> Result<()> {
+async fn handle_command(cli: cli::Commands) {
     match cli {
         cli::Commands::Init => {
             let _ = db::init();
@@ -42,6 +38,4 @@ async fn handle_command(cli: cli::Commands) -> Result<()> {
             let _ = server::start().await;
         }
     }
-
-    Ok(())
 }
