@@ -25,6 +25,9 @@
 						<span class="bg-indigo-500 rounded-full px-3 py-1 font-semibold text-gray-50"
 							>30 LP</span
 						>
+						<span class="ml-2 bg-yellow-500 rounded-full px-3 py-1 font-semibold text-gray-50"
+							>Level 1</span
+						>
 					</div>
 				</div>
 				<div class="-mr-2 flex md:hidden">

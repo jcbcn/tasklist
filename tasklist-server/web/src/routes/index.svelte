@@ -1,5 +1,5 @@
 <div class="h-full flex flex-cols items-stretch">
-	<div class="w-1/6 p-4 bg-neutral-50">
+	<div class="w-1/5 p-4 bg-neutral-50">
 		<div class="flex items-center justify-between">
 			<h1 class="text-2xl text-gray-900 font-bold">Rewards</h1>
 			<a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 underline"
@@ -9,61 +9,28 @@
 
 		<fieldset class="mt-4">
 			<legend class="sr-only">Choose a size</legend>
-			<div class="grid grid-cols-4 gap-4">
+			<div class="grid grid-flow-row auto-rows-max gap-4">
 				<div
-					class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 bg-white shadow-sm text-gray-900 cursor-pointer"
+					class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium focus:outline-none hover:bg-gray-100 sm:flex-1 shadow-sm text-gray-900 cursor-pointer"
 				>
-					<div class="task-list-item w-full px-2 py-3 hover:bg-gray-50">
-						Coffee
+					<div class="task-list-item w-full">
+						Starbucks Coffee
 						<span
 							class="float-right inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
 							>5 LP</span
 						>
 					</div>
 				</div>
-
 				<div
-					class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 bg-white shadow-sm text-gray-900 cursor-pointer"
+					class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium focus:outline-none hover:bg-gray-100 sm:flex-1 shadow-sm text-gray-900 cursor-pointer"
 				>
-					<div class="task-list-item w-full px-2 py-3 hover:bg-gray-50">
-						Takeaway
+					<div class="task-list-item w-full">
+						Takeaway Pizza
 						<span
 							class="float-right inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
 							>10 LP</span
 						>
 					</div>
-				</div>
-
-				<div
-					class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 bg-white shadow-sm text-gray-900 cursor-pointer"
-				>
-					<div class="task-list-item w-full px-2 py-3 hover:bg-gray-50">
-						Sweets
-						<span
-							class="float-right inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-							>10 LP</span
-						>
-					</div>
-				</div>
-				<div
-					class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase bg-gray-50 focus:outline-none sm:flex-1 bg-white shadow-sm text-gray-900 cursor-pointer"
-				>
-					<div class="task-list-item w-full px-2 py-3 hover:bg-gray-50">
-						<span>Used 5/5 in the last week</span>
-					</div>
-					<span
-						aria-hidden="true"
-						class="absolute -inset-px rounded-md border-2 border-gray-200 pointer-events-none"
-					>
-						<svg
-							class="absolute inset-0 w-full h-full text-gray-200 stroke-2"
-							viewBox="0 0 100 100"
-							preserveAspectRatio="none"
-							stroke="currentColor"
-						>
-							<line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke" />
-						</svg>
-					</span>
 				</div>
 			</div>
 		</fieldset>
@@ -332,14 +299,14 @@
 			</div>
 		</div>
 	</div>
-	<div class="w-1/6 p-4 bg-neutral-50">
+	<div class="w-1/5 p-4 bg-neutral-50">
 		<div class="flex items-center justify-between">
 			<h1 class="text-2xl text-gray-900 font-bold">Completed Today</h1>
 		</div>
 
 		<fieldset class="mt-4">
 			<legend class="sr-only">Choose a size</legend>
-			<div class="grid grid-flow-row auto-rows-max">
+			<div class="grid grid-flow-row auto-rows-max gap-4">
 				<div
 					class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium focus:outline-none hover:bg-gray-50 sm:flex-1 shadow-sm text-gray-900 cursor-pointer"
 				>
@@ -347,21 +314,24 @@
 						<div class="radio-button-container mr-2">
 							<div class="radio-button" />
 						</div>
-						A really long title just to test how well it handles displaying this
+						Wake up early
 						<span
-							class="float-right inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-							>0 LP</span
+							class="float-right inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+							>+5 LP</span
 						>
 					</div>
 				</div>
 				<div
 					class="group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium focus:outline-none hover:bg-gray-50 sm:flex-1 shadow-sm text-gray-900 cursor-pointer"
 				>
-					<div class="task-list-item w-full">
-						Test
+					<div class="task-list-item completed w-full">
+						<div class="radio-button-container mr-2">
+							<div class="radio-button" />
+						</div>
+						Clean House
 						<span
-							class="float-right inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-							>0 LP</span
+							class="float-right inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+							>+5 LP</span
 						>
 					</div>
 				</div>
